@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8020eef579e56eb43add26e3b49776c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 100
+  count: 500
   particule: {fileID: 5931238382843305283, guid: 3fa320b10de491e4cb00b40e93ee8416, type: 3}
 --- !u!4 &1236632600
 Transform:

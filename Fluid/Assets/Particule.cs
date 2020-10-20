@@ -16,7 +16,7 @@ public class Particule : MonoBehaviour
     public Vector3 acceleration;
     public Vector3 speed;
 
-    private GameObject[] neighbors;
+    private List<GameObject> neighbors;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,12 +34,13 @@ public class Particule : MonoBehaviour
         GetNeighbors();
         Density();
 
+        OutOfBorders();
+
         speed = (transform.position - oldPosition) / Time.deltaTime;
 
         /*NewAcceleration();
         NewSpeed();
         NewPosition();*/
-        OutOfBorders();
     }
 
     private void NewAcceleration()
@@ -59,10 +60,35 @@ public class Particule : MonoBehaviour
 
     private void OutOfBorders()
     {
-        if(transform.position.y <= -11)
+        if (transform.position.y <= -11)
         {
-            transform.position = new Vector3(transform.position.x, -11, transform.position.z);
-            GetComponent<Particule>().enabled = false;
+            transform.position = new Vector3(transform.position.x, -10.9f, transform.position.z);
+            speed.y = -speed.y;
+        }
+        if (transform.position.y >= 11)
+        {
+            transform.position = new Vector3(transform.position.x, 10.9f, transform.position.z);
+            speed.y = -speed.y;
+        }
+        if (transform.position.x <= -2)
+        {
+            transform.position = new Vector3(-1.9f, transform.position.y, transform.position.z);
+            speed.x = -speed.x;
+        }
+        if (transform.position.x >= 2)
+        {
+            transform.position = new Vector3(1.9f, transform.position.y, transform.position.z);
+            speed.x = -speed.x;
+        }
+        if (transform.position.z <= -2)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -1.9f);
+            speed.z = -speed.z;
+        }
+        if (transform.position.z >= 2)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 1.9f);
+            speed.z = -speed.z;
         }
     }
 
@@ -71,18 +97,18 @@ public class Particule : MonoBehaviour
         float density = 0;
         float densityNear = 0;
 
-        foreach(GameObject neighbor in neighbors)
+        foreach (GameObject neighbor in neighbors)
         {
             float q = Vector3.Distance(transform.position, neighbor.transform.position) / h;
 
-            if(q < 1)
+            if (q < 1)
             {
-                density += (1 - q) * (1 - q);
-                densityNear += (1 - q) * (1 - q) * (1 - q);
+                density += Mathf.Pow((1 - q), 2);
+                densityNear += Mathf.Pow((1 - q), 3);
             }
         }
 
-        float pressure = k*(density - densityNear);
+        float pressure = k * (density - densityNear);
         float pressureNear = kNear * densityNear;
 
         Vector3 offset = Vector3.zero;
@@ -93,7 +119,7 @@ public class Particule : MonoBehaviour
 
             if (q < 1)
             {
-                Vector3 distance = Mathf.Pow(Time.deltaTime, 2) * ((pressure * (1 - q))+(pressureNear*Mathf.Pow(1-q,2))) * Vector3.Normalize(neighbor.transform.position - transform.position);
+                Vector3 distance = Mathf.Pow(Time.deltaTime, 2) * ((pressure * (1 - q)) + (pressureNear * Mathf.Pow(1 - q, 2))) * Vector3.Normalize(neighbor.transform.position - transform.position);
 
                 neighbor.transform.position += distance / 2f;
 
@@ -105,6 +131,10 @@ public class Particule : MonoBehaviour
 
     private void GetNeighbors()
     {
-        neighbors = GameObject.FindGameObjectsWithTag("Player");
+        neighbors = new List<GameObject>();
+        Collider[] colliders = Physics.OverlapSphere(transform.position, h);
+        foreach (Collider c in colliders)
+            //Debug.Log("Add");
+            neighbors.Add(c.gameObject);
     }
 }
