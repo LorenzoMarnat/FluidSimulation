@@ -36,15 +36,15 @@ public class Particule : MonoBehaviour
         if (transform.position.y >= 11)
             transform.position = new Vector3(transform.position.x, 10.9f, transform.position.z);
 
-        if (transform.position.x <= -3)
-            transform.position = new Vector3(-2.9f, transform.position.y, transform.position.z);
-        if (transform.position.x >= 3)
-            transform.position = new Vector3(2.9f, transform.position.y, transform.position.z);
+        if (transform.position.x <= -4)
+            transform.position = new Vector3(-3.9f, transform.position.y, transform.position.z);
+        if (transform.position.x >= 4)
+            transform.position = new Vector3(3.9f, transform.position.y, transform.position.z);
 
-        if (transform.position.z <= -3)
-            transform.position = new Vector3(transform.position.x, transform.position.y, -2.9f);
-        if (transform.position.z >= 3)
-            transform.position = new Vector3(transform.position.x, transform.position.y, 2.9f);
+        if (transform.position.z <= -2)
+            transform.position = new Vector3(transform.position.x, transform.position.y, -1.9f);
+        if (transform.position.z >= 1)
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0.9f);
     }
 
     /*private void Density()

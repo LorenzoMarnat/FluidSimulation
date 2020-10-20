@@ -7,9 +7,13 @@ public class Spawner : MonoBehaviour
     public int count = 1000;
     public GameObject particule;
 
+    [Range(0f,10f)]
     public float densityZero = 1f;
+    [Range(0f, 2f)]
     public float h = 1f;
+    [Range(0f, 10f)]
     public float k = 0.1f;
+    [Range(0f, 10f)]
     public float kNear = 0.1f;
 
     public Vector3 gravity = new Vector3(0, -9.8f, 0);
@@ -21,7 +25,7 @@ public class Spawner : MonoBehaviour
         particules = new GameObject[count];
         for(int i = 0;i <count;i++)
         {
-            Vector3 pos = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), Random.Range(-2f, 2f));
+            Vector3 pos = new Vector3(Random.Range(-3f, 3f), Random.Range(-2f, 2f), Random.Range(-2f, 0f));
             particules[i] = Instantiate(particule, pos, Quaternion.identity);
             particules[i].GetComponent<Particule>().h = h;
         }
