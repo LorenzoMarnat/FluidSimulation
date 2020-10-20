@@ -6,7 +6,7 @@ public class Particule : MonoBehaviour
 {
     public float mass;
 
-    private float gravity = -9.8f;
+    public Vector3 gravity = new Vector3(0, -9.8f, 0);
 
     public Vector3 acceleration;
     public Vector3 speed;
@@ -16,7 +16,7 @@ public class Particule : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mass = Random.Range(1, 10);
+        mass = Random.Range(5, 10);
     }
 
     // Update is called once per frame
@@ -25,11 +25,12 @@ public class Particule : MonoBehaviour
         NewAcceleration();
         NewSpeed();
         NewPosition();
+        OutOfBorders();
     }
 
     private void NewAcceleration()
     {
-        acceleration = new Vector3(0, gravity, 0);
+        acceleration = mass * gravity;
         acceleration -= speed * speed.magnitude;
         acceleration /= mass;
     }
@@ -40,5 +41,14 @@ public class Particule : MonoBehaviour
     private void NewPosition()
     {
         transform.position += speed * Time.deltaTime;
+    }
+
+    private void OutOfBorders()
+    {
+        if(transform.position.y <= -11)
+        {
+            transform.position = new Vector3(transform.position.x, -11, transform.position.z);
+            GetComponent<Particule>().enabled = false;
+        }
     }
 }

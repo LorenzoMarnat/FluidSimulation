@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
     {
         for(int i = 0;i <count;i++)
         {
-            Vector3 pos = new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10));
+            Vector3 pos = new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), Random.Range(-10f, 10f));
             Instantiate(particule, pos, Quaternion.identity);
         }
     }
