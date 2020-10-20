@@ -12,23 +12,6 @@ public class Particule : MonoBehaviour
 
     public Vector3 oldPosition;
 
-    // Update is called once per frame
-    /*void Update()
-    {
-        speed += Time.deltaTime * gravity;
-
-        Vector3 oldPosition = transform.position;
-        transform.position += Time.deltaTime * speed;
-
-        GetNeighbors();
-        Density();
-
-        OutOfBorders();
-
-        speed = (transform.position - oldPosition) / Time.deltaTime;
-
-    }*/
-
     public void OutOfBorders()
     {
         if (transform.position.y <= -11)
@@ -46,43 +29,6 @@ public class Particule : MonoBehaviour
         if (transform.position.z >= 1)
             transform.position = new Vector3(transform.position.x, transform.position.y, 0.9f);
     }
-
-    /*private void Density()
-    {
-        float density = 0;
-        float densityNear = 0;
-
-        foreach (Collider neighbor in neighbors)
-        {
-            float q = Vector3.Distance(transform.position, neighbor.gameObject.transform.position) / h;
-
-            if (q < 1)
-            {
-                density += Mathf.Pow((1 - q), 2);
-                densityNear += Mathf.Pow((1 - q), 3);
-            }
-        }
-
-        float pressure = k * (density - densityNear);
-        float pressureNear = kNear * densityNear;
-
-        Vector3 offset = Vector3.zero;
-
-        foreach (Collider neighbor in neighbors)
-        {
-            float q = Vector3.Distance(transform.position, neighbor.transform.position) / h;
-
-            if (q < 1)
-            {
-                Vector3 distance = Mathf.Pow(Time.deltaTime, 2) * ((pressure * (1 - q)) + (pressureNear * Mathf.Pow(1 - q, 2))) * Vector3.Normalize(neighbor.gameObject.transform.position - transform.position);
-
-                neighbor.transform.position += distance / 2f;
-
-                offset -= distance / 2f;
-            }
-        }
-        transform.position += offset;
-    }*/
 
     public void GetNeighbors()
     {

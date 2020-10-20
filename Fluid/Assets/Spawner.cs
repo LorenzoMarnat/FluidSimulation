@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
     public int count = 1000;
     public GameObject particule;
 
-    [Range(0f,10f)]
+    [Range(0f,100f)]
     public float densityZero = 1f;
     [Range(0f, 2f)]
     public float h = 1f;
