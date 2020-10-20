@@ -329,6 +329,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   count: 1000
   particule: {fileID: 5931238382843305283, guid: 3fa320b10de491e4cb00b40e93ee8416, type: 3}
+  densityZero: 0.5
+  h: 0.7
+  k: 0.1
+  kNear: 1
+  gravity: {x: 0, y: -9.8, z: 0}
 --- !u!4 &1236632600
 Transform:
   m_ObjectHideFlags: 0

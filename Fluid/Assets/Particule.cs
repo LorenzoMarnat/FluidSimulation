@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class Particule : MonoBehaviour
 {
-    public float densityZero = 1f;
-    public float h = 1f;
-    public float k = 0.1f;
-    public float kNear = 0.1f;
-
-    public Vector3 gravity = new Vector3(0, -9.8f, 0);
-
     public Vector3 speed;
 
-    private Collider[] neighbors;
+    public Collider[] neighbors;
+
+    public float h;
+
+    public Vector3 oldPosition;
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         speed += Time.deltaTime * gravity;
 
@@ -30,9 +27,9 @@ public class Particule : MonoBehaviour
 
         speed = (transform.position - oldPosition) / Time.deltaTime;
 
-    }
+    }*/
 
-    private void OutOfBorders()
+    public void OutOfBorders()
     {
         if (transform.position.y <= -11)
             transform.position = new Vector3(transform.position.x, -10.9f, transform.position.z);
@@ -50,7 +47,7 @@ public class Particule : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, 2.9f);
     }
 
-    private void Density()
+    /*private void Density()
     {
         float density = 0;
         float densityNear = 0;
@@ -85,9 +82,9 @@ public class Particule : MonoBehaviour
             }
         }
         transform.position += offset;
-    }
+    }*/
 
-    private void GetNeighbors()
+    public void GetNeighbors()
     {
         neighbors = Physics.OverlapSphere(transform.position, h);
     }
