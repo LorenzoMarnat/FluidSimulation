@@ -26,8 +26,8 @@ public class Particule : MonoBehaviour
         if (transform.position.x >= 4)
             transform.position = new Vector3(3.9f, transform.position.y, transform.position.z);
 
-        if (transform.position.z <= -2)
-            transform.position = new Vector3(transform.position.x, transform.position.y, -1.9f);
+        if (transform.position.z <= -1)
+            transform.position = new Vector3(transform.position.x, transform.position.y, -0.9f);
         if (transform.position.z >= 1)
             transform.position = new Vector3(transform.position.x, transform.position.y, 0.9f);
     }
