@@ -12,6 +12,8 @@ public class Particule : MonoBehaviour
 
     public Vector3 oldPosition;
 
+    public bool appliedViscosity = false;
+
     public void OutOfBorders()
     {
         if (transform.position.y <= -11)
