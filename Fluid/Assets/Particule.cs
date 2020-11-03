@@ -27,9 +27,9 @@ public class Particule : MonoBehaviour
             transform.position = new Vector3(3.9f, transform.position.y, transform.position.z);
 
         if (transform.position.z <= -1)
-            transform.position = new Vector3(transform.position.x, transform.position.y, -0.9f);
+            transform.position = new Vector3(transform.position.x, transform.position.y, -0.5f);
         if (transform.position.z >= 1)
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0.9f);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0.5f);
     }
 
     public void GetNeighbors()
